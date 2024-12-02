@@ -153,7 +153,7 @@ app.get('/', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).RelplaceAll("COLOR", /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "#000000"));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "#000000"));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
