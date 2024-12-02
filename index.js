@@ -7,8 +7,8 @@ const port = process.env.PORT || 4000;
 const embedWidth = 350;
 
 let template = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
-        '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
-        '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>'];
+    '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
+    '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>'];
 
 let results = {
     AR: {
@@ -142,8 +142,8 @@ app.get('/', async (req, res) => {
             branches[lang] = true;
             count++;
             wsmol += 20;
-            wmid+=44;
-            wbig+=results[lang].width;
+            wmid += 44;
+            wbig += results[lang].width;
         })() : branches[lang] = false;
     }
 
@@ -153,7 +153,7 @@ app.get('/', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "#000000"));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000"));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
