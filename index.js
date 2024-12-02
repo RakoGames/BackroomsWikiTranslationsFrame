@@ -103,28 +103,25 @@ let results = {
         host: 'http://th-backrooms-wiki.wikidot.com',
         title: 'แบ็กรูมส์',
         width: 58.1,
-        href: ['<a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/thai" class="image" alt="thai"></a>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/thai" class="image" alt="thai"></a><a class="expanded" target="_top" href="HOST/URL">TH</a></div>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/thai" class="image" alt="thai"></a><a class="expanded" target="_top" href="HOST/URL">Thai</a></div>'],
-        miss: ''
+        flag: 'http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/thai',
+        alt: 'thai',
+        name: ['TH', 'Thai']
     },
     TOK: {
         host: 'http://backrooms-tok-wiki.wikidot.com',
         title: 'tomo monsi',
         width: 58.1,
-        href: ['<a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/toki" class="image" alt="toki"></a>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/toki" class="image" alt="toki"></a><a class="expanded" target="_top" href="HOST/URL">TOK</a></div>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/toki" class="image" alt="toki"></a><a class="expanded" target="_top" href="HOST/URL">Toka Pona</a></div>'],
-        miss: ''
+        flag: 'http://backrooms-sandbox-2.wikidot.com/local--files/zenzick-3/toki',
+        alt: 'toki',
+        name: ['TOK', 'Toka Pona']
     },
     VN: {
         host: 'http://backrooms-vn.wikidot.com',
         title: 'Backrooms Việt Nam',
         width: 100.3,
-        href: ['<a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick/vietnam" class="image" alt="vietnam"></a>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick/vietnam" class="image" alt="vietnam"></a><a class="expanded" target="_top" href="HOST/URL">VN</a></div>',
-              '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="http://backrooms-sandbox-2.wikidot.com/local--files/zenzick/vietnam" class="image" alt="vietnam"></a><a class="expanded" target="_top" href="HOST/URL">Veitnamese</a></div>'],
-        miss: ''
+        flag: 'http://backrooms-sandbox-2.wikidot.com/local--files/zenzick/vietnam',
+        alt: 'vietnam',
+        name: ['VN', 'Vietnamese']
     },
 }
 htmlCode = fs.readFileSync('website.html').toString()
@@ -134,9 +131,9 @@ app.get('/', async (req, res) => {
     let result = '';
     let count = 0;
     let branches = {};
-    wsmol = 0
-    wmid = 0
-    wbig = 0
+    let wsmol = 20;
+    let wmid = 0;
+    let wbig = 0;
 
     for (const lang in results) {
         if (branch == lang.toLowerCase()) { continue }
