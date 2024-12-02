@@ -128,6 +128,7 @@ htmlCode = fs.readFileSync('website.html').toString()
 app.get('/', async (req, res) => {
     const url = req.query.url ?? '';
     const branch = req.query.branch ?? '';
+    const color = req.query.color ?? '';
     let result = '';
     let count = 0;
     let branches = {};
@@ -152,7 +153,7 @@ app.get('/', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replace("THING GOES HERE", result));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).RelplaceAll("COLOR", /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "#000000"));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
