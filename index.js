@@ -53,8 +53,12 @@ app.listen(port, () => console.log(`Service Started at link: http://localhost:${
 
 CheckSite = function(host, url, title) {
     return new Promise(async (resolve, reject) => {
-        res = await (await fetch(`${host}/${url ?? ''}`)).text();
-        console.log(host.split("//")[1].split(".wikidot")[0] + " " + res.split('<title>')[1]?.split('</title>')[0]);
-        resolve(!res.includes(`<title>${title}</title>`));
+        try {
+            res = await (await fetch(`${host}/${url ?? ''}`)).text();
+            console.log(host.split("//")[1].split(".wikidot")[0] + " " + res.split('<title>')[1]?.split('</title>')[0]);
+            resolve(!res.includes(`<title>${title}</title>`));
+        } catch {
+            resolve(false);
+        }
     });
 }
