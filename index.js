@@ -17,6 +17,9 @@ let results = require('./branches.json');
 
 htmlCode = fs.readFileSync('website.html').toString()
 app.get('/', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    
     const url = req.query.url ?? '';
     const branch = req.query.branch ?? '';
     const color = req.query.color ?? '';
