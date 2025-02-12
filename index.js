@@ -1,7 +1,10 @@
 const fetch = require('node-fetch');
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
 const app = express();
+
+app.use(cors({credentials: true, origin: true}));
 
 const port = process.env.PORT || 4000;
 const embedWidth = 350;
