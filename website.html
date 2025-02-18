@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Check!</title>
     <script>
-        import { ResizeObserver } from "@juggle/resize-observer";
-
         /**
          * @type {import("./resizeIframe").createResizeIframe}
          */
         var createResizeIframe = window.resizeIframe.createResizeIframe;
 
-        function loaded () {
-            // Construct the function that will resize the frame after changes
-            var site = document.referrer;
-            var frameId = location.href.replace(/^.*\//, "/");
-            var resize = createResizeIframe(site, frameId);
-        }
+        // Construct the function that will resize the frame after changes
+        var site = document.referrer;
+        var frameId = location.href.replace(/^.*\//, "/");
+        var resize = createResizeIframe(site, frameId);
     </script>
 </head>
 <body onload="loaded()">
