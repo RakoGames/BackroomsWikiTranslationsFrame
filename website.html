@@ -4,6 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick Check!</title>
+    
+</head>
+<body onload="loaded()">
+    <div class="flags">
+        THING GOES HERE
+    </div>
+
+    <style>
+        body {
+            margin: 0;
+        }
+        .flags {
+            width: WIDTHpx;
+            height: HEIGHTpx;
+            border: 3px blue;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            overflow: scroll;
+        }
+        .expanded {
+            color: #COLOR;
+            font-family: "Fantasque Sans Mono", Courier New, Ubuntu Mono, Consolas, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: .85em;
+            line-height: calc(1.3125*1.25);
+            text-transform: capitalize;
+            background-color: transparent;
+            border: none;
+            padding-left: .25em;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            text-decoration: none;
+            font-weight: 600;
+            background: 0 0;
+            background-color: rgba(0, 0, 0, 0);
+            position: relative;
+            word-break: normal;
+            hyphens: manual;
+            font-optical-sizing: auto;
+        }
+        img.image {
+            width: 20px;
+        }
+    </style>
+
     <script>
         /**
          * Constructs and returns a function that, when called, resizes the current iframes to match its contents or the given height. The function is debounced.
@@ -86,53 +136,5 @@
         var frameId = location.href.replace(/^.*\//, "/");
         var resize = createResizeIframe(site, frameId);
     </script>
-</head>
-<body onload="loaded()">
-    <div class="flags">
-        THING GOES HERE
-    </div>
-
-    <style>
-        body {
-            margin: 0;
-        }
-        .flags {
-            width: WIDTHpx;
-            height: HEIGHTpx;
-            border: 3px blue;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: flex;
-            justify-content: space-around;
-            flex-direction: column;
-            overflow: scroll;
-        }
-        .expanded {
-            color: #COLOR;
-            font-family: "Fantasque Sans Mono", Courier New, Ubuntu Mono, Consolas, monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            font-size: .85em;
-            line-height: calc(1.3125*1.25);
-            text-transform: capitalize;
-            background-color: transparent;
-            border: none;
-            padding-left: .25em;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            text-decoration: none;
-            font-weight: 600;
-            background: 0 0;
-            background-color: rgba(0, 0, 0, 0);
-            position: relative;
-            word-break: normal;
-            hyphens: manual;
-            font-optical-sizing: auto;
-        }
-        img.image {
-            width: 20px;
-        }
-    </style>
 </body>
 </html>
