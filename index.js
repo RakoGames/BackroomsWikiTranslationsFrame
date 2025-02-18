@@ -18,7 +18,7 @@ let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image"
 let results = require('./branches.json');
 
 htmlCode = fs.readFileSync('website.html').toString()
-app.get('/', async (req, res) => {
+app.get('/translations', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
