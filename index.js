@@ -43,7 +43,8 @@ app.get('/', async (req, res) => {
 
     for (const lang in branches) {
         if (branches[lang]) {
-            result += templates[wmid < embedWidth ? (wbig < embedWidth ? 2 : 1) : 0].replaceAll("HOST", results[lang].host).replaceAll("URL", url).replaceAll("FLAG", results[lang].flag).replaceAll("ALT", results[lang].alt).replaceAll("NAME", results[lang].name[(wbig < embedWidth ? 1 : 0)]);
+            //result += templates[wmid < embedWidth ? (wbig < embedWidth ? 2 : 1) : 0].replaceAll("HOST", results[lang].host).replaceAll("URL", url).replaceAll("FLAG", results[lang].flag).replaceAll("ALT", results[lang].alt).replaceAll("NAME", results[lang].name[(wbig < embedWidth ? 1 : 0)]);
+            result += templates[2].replaceAll("HOST", results[lang].host).replaceAll("URL", url).replaceAll("FLAG", results[lang].flag).replaceAll("ALT", results[lang].alt).replaceAll("NAME", results[lang].name[1]);
         }
     }
 
