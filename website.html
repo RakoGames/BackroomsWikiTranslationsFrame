@@ -6,7 +6,7 @@
     <title>Quick Check!</title>
     
 </head>
-<body onload="resize()">
+<body onload="resizeFrame()">
     <div class="flags">
         THING GOES HERE
     </div>
@@ -124,19 +124,12 @@
             }, wait);
           };
         }
-    </script>
-    <script>
-        /**
-         * @type {import("./resizeIframe").createResizeIframe}
-         */
-        //var createResizeIframe = window.resizeIframe.createResizeIframe;
 
-        // Construct the function that will resize the frame after changes
-        var site = document.referrer;
-        console.log(location);
-        console.log(location.href);
-        var frameId = location.href.replace(/^.*\//, "/");
-        var resized = createResizeIframe(site, frameId);
+        function resizeFrame () {
+            var site = document.referrer;
+            var frameId = location.href.replace(/^.*\//, "/");
+            var resized = createResizeIframe(site, frameId);
+        }
     </script>
 </body>
 </html>
