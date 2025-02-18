@@ -7,7 +7,7 @@ const app = express();
 app.use(cors({credentials: true, origin: true}));
 
 const port = process.env.PORT || 4000;
-const embedWidth = 350;
+const embedWidth = 100;
 
 let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
     '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000"));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000").replaceAll("WIDTH", embedWidth));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 

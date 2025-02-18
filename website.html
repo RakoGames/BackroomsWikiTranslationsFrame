@@ -13,10 +13,9 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden;
         }
         .flags {
-            width: 350px;
+            width: WIDTHpx;
             border: 3px blue;
             display: -webkit-box;
             display: -webkit-flex;
@@ -24,6 +23,8 @@
             display: -ms-flexbox;
             display: flex;
             justify-content: space-around;
+            flex-direction: column;
+            overflow: scroll;
         }
         .expanded {
             color: #COLOR;
@@ -33,7 +34,7 @@
             text-transform: capitalize;
             background-color: transparent;
             border: none;
-            padding: 0 8px 0 2px;
+            padding-left: .25em;
             display: -webkit-box;
             display: -webkit-flex;
             display: flex;
