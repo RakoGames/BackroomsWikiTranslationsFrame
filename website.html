@@ -13,7 +13,7 @@
          * @param {Number=} [debounceTime] - Debounce delay to stagger repeated calls to the resizer. Defaults to 750 ms.
          * @returns {((height: Number=) => void)} Debounced function that resizes the iframe. Optional height parameter sets the height of the iframe; if not set, the height is calculated from the document.
          */
-        export function createResizeIframe(site, frameId, debounceTime) {
+        function createResizeIframe(site, frameId, debounceTime) {
           if (debounceTime == null) debounceTime = 750;
 
           var container = document.getElementById("resizer-container");
@@ -63,7 +63,7 @@
          * @param {Number} wait - The number of milliseconds to wait after any call to the debounced function before executing it.
          * @returns {Function} The debounced function.
          */
-        export function debounce(func, wait) {
+        function debounce(func, wait) {
           var timeout = 0;
           return function () {
             var context = this;
