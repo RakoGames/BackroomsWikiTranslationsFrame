@@ -133,6 +133,8 @@
 
         // Construct the function that will resize the frame after changes
         var site = document.referrer;
+        console.log(location);
+        console.log(location.href);
         var frameId = location.href.replace(/^.*\//, "/");
         var resize = createResizeIframe(site, frameId);
     </script>
