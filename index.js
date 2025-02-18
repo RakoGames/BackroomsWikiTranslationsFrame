@@ -4,10 +4,12 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 
-app.use(cors({credentials: true, origin: true}));
+app.use(cors({ credentials: true, origin: true }));
 
 const port = process.env.PORT || 4000;
 const embedWidth = 100;
+const embedHeight = 150;
+const itemHeightFactor = 50;
 
 let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
     '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
@@ -19,7 +21,7 @@ htmlCode = fs.readFileSync('website.html').toString()
 app.get('/', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    
+
     const url = req.query.url ?? '';
     const branch = req.query.branch ?? '';
     const color = req.query.color ?? '';
@@ -48,7 +50,7 @@ app.get('/', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000").replaceAll("WIDTH", embedWidth));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000").replaceAll("WIDTH", embedWidth).replaceAll("HEIGHT", count > 3 ? embedHeight : count * itemHeightFactor));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
