@@ -22,7 +22,10 @@ app.get('/translations', async (req, res) => {
     const url = req.query.url !== "{$url}" ? req.query.url : '';
     const branch = req.query.branch !== "{$branch}" ? req.query.branch : '';
     const theme = req.query.theme !== "{$theme}" ? req.query.theme : '';
-    const siteid = document.referrer.split('//')[1].split('.wikidot.com')[0];
+    //const siteid = document.referrer.split('//')[1].split('.wikidot.com')[0];
+
+    console.log(req.hostname);
+    console.log(req.originalUrl);
     let result = '';
     let count = 0;
     let branches = {};
