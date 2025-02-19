@@ -19,10 +19,10 @@ app.get('/translations', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-    const url = req.query.url == "{$url}" ? req.query.url : '';
-    const branch = req.query.branch == "{$branch}" ? req.query.branch : '';
-    const theme = req.query.theme == "{$theme}" ? req.query.theme : '';
-    const siteid = req.query.siteid == "{$siteid}" ? req.query.siteid : 'backrooms-wiki';
+    const url = req.query.url !== "{$url}" ? req.query.url : '';
+    const branch = req.query.branch !== "{$branch}" ? req.query.branch : '';
+    const theme = req.query.theme !== "{$theme}" ? req.query.theme : '';
+    const siteid = req.query.siteid !== "{$siteid}" ? req.query.siteid : 'backrooms-wiki';
     let result = '';
     let count = 0;
     let branches = {};
