@@ -89,7 +89,7 @@
               if (height) height += 1;
             }
             var newResizerSrc =
-              site +
+              site.replace("http://", "https://") +
               "/common--javascript/resize-iframe.html?" +
               "#" +
               height +
