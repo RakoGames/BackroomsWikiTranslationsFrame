@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick Check!</title>
+    <title>Backrooms Translations!</title>
     
 </head>
 <body onload="resizeFrame()">
-    <div class="flags">
-        THING GOES HERE
+    <div class="flags-container">
+        <div class="flags">
+            THING GOES HERE
+        </div>
     </div>
 
     <style>
         @import url(https://SITEID.wdfiles.com/local--code/component%3Atheme/1);
         @import url(https://SITEID.wdfiles.com/local--code/theme%3ATHEME/1);
         @import url(https://SITEID.wdfiles.com/local--code/theme%3ATHEME/2);
-      
-        body {
-            margin: 0;
+
+        :root {
+            --link-color: var(--rating-module-text-color);
+            --hover-link-color: var(--rating-module-text-color);
+            --link-visited-color: var(--rating-module-text-color);
+        }
+        html {
+            max-height: calc(var(--rating-module-height) * 3);
+        }
+        .flags-container {
+            max-height: calc(var(--rating-module-height) * 3);
+            height: calc(var(--rating-module-height) * 3);
+            overflow: scroll;
         }
         .flags {
             width: WIDTHpx;
@@ -28,23 +40,18 @@
             display: -moz-box;
             display: -ms-flexbox;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-direction: column;
-            max-height: 115px;
+            width: 100%;
         }
         .expanded {
             color: #COLOR;
             font-family: var(--UI-font);
-            font-size: .85em;
-            line-height: calc(1.3125*1.25);
+            font-size: 1em;
             text-transform: capitalize;
             background-color: transparent;
             border: none;
             padding-left: .25em;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            text-decoration: none;
             font-weight: 600;
             background: 0 0;
             background-color: rgba(0, 0, 0, 0);
@@ -52,6 +59,10 @@
             word-break: normal;
             hyphens: manual;
             font-optical-sizing: auto;
+            text-decoration: none !important;
+        }
+        a.expanded::after, a.expanded::before, a.expanded:hover::after, a.expanded:hover::before, a.expanded:target::after, a.expanded:target::before, a.expanded:focus::after, a.expanded:focus::before {
+            content: none;
         }
         img.image {
             width: 20px;
