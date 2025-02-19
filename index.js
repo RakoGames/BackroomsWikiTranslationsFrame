@@ -8,11 +8,9 @@ app.use(cors({ credentials: true, origin: true }));
 
 const port = process.env.PORT || 4000;
 
-let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
-    '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
-    '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>'];
+let template = '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>';
 
-let results = require('./branches.json');
+let branches = require('./branches.json');
 
 htmlCode = fs.readFileSync('website.html').toString()
 app.get('/translations', async (req, res) => {
@@ -22,39 +20,27 @@ app.get('/translations', async (req, res) => {
     const url = req.query.url !== "{$url}" ? req.query.url : '';
     const branch = req.query.branch !== "{$branch}" ? req.query.branch : '';
     const theme = req.query.theme !== "{$theme}" ? req.query.theme : '';
-    const siteid = req.get('Referrer').split('//')[1].split('.wikidot.com')[0];
+    const siteid = req.get('Referrer').split("//")[1].split(".wikidot")[0];
 
-    console.log(req.get('Referrer'));
-
-    console.log(req.hostname);
-    console.log(req.originalUrl);
-    console.log(req.params);
     let result = '';
     let count = 0;
-    let branches = {};
-    let wsmol = 20;
-    let wmid = 0;
-    let wbig = 0;
-
-    for (const lang in results) {
-        if (branch == lang.toLowerCase()) { continue }
-        await CheckSite(results[lang].host, url, results[lang].title) ? (() => {
-            branches[lang] = true;
-            count++;
-            wsmol += 20;
-            wmid += 44;
-            wbig += results[lang].width;
-        })() : branches[lang] = false;
-    }
+    let matches = {};
 
     for (const lang in branches) {
-        if (branches[lang]) {
-            //result += templates[wmid < embedWidth ? (wbig < embedWidth ? 2 : 1) : 0].replaceAll("HOST", results[lang].host).replaceAll("URL", url).replaceAll("FLAG", results[lang].flag).replaceAll("ALT", results[lang].alt).replaceAll("NAME", results[lang].name[(wbig < embedWidth ? 1 : 0)]);
-            result += templates[2].replaceAll("HOST", results[lang].host).replaceAll("URL", url).replaceAll("FLAG", results[lang].flag).replaceAll("ALT", results[lang].alt).replaceAll("NAME", results[lang].name[1]);
+        if (branch == lang.toLowerCase()) { continue }
+        await CheckSite(branches[lang].host, url, branches[lang].title) ? (() => {
+            matches[lang] = true;
+            count++;
+        })() : matches[lang] = false;
+    }
+
+    for (const lang in matches) {
+        if (matches[lang]) {
+            result += template.replaceAll("HOST", branches[lang].host).replaceAll("URL", url).replaceAll("FLAG", branches[lang].flag).replaceAll("ALT", branches[lang].alt).replaceAll("NAME", branches[lang].name[1]);
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("THEME", theme).replaceAll("SITEID", siteid).replaceAll("THEME", theme));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("THEME", theme).replaceAll("SITEID", siteid));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
@@ -62,7 +48,7 @@ CheckSite = function(host, url, title) {
     return new Promise(async (resolve, reject) => {
         try {
             res = await (await fetch(`${host}/${url ?? ''}`)).text();
-            console.log(host.split("//")[1].split(".wikidot")[0] + " " + res.split('<title>')[1]?.split('</title>')[0]);
+            //console.log(host.split("//")[1].split(".wikidot")[0] + " " + res.split('<title>')[1]?.split('</title>')[0]);
             resolve(!res.includes(`<title>${title}</title>`));
         } catch {
             resolve(false);

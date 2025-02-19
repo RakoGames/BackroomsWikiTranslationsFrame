@@ -6,7 +6,7 @@
     <title>Backrooms Translations!</title>
     
 </head>
-<body onload="resizeFrame()">
+<body>
     <div class="flags-container">
         <div class="flags">
             THING GOES HERE
@@ -24,15 +24,19 @@
             --visited-link-color: var(--rating-module-text-color);
         }
         html {
-            max-height: calc(var(--rating-module-height) * 3);
+            max-height: calc(var(--rating-module-height) * 2.75);
+        }
+        body {
+            background: 0;
         }
         .flags-container {
-            max-height: calc(var(--rating-module-height) * 3);
-            height: calc(var(--rating-module-height) * 3);
+            max-height: calc(var(--rating-module-height) * 2.75);
+            height: calc(var(--rating-module-height) * 2.75);
             overflow: scroll;
         }
         .flags {
             width: 100%;
+            min-height: 100%;
             height: fit-content;
             border: 3px blue;
             display: -webkit-box;
@@ -40,7 +44,7 @@
             display: -moz-box;
             display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-direction: column;
         }
         .expanded {
