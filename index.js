@@ -8,8 +8,8 @@ app.use(cors({ credentials: true, origin: true }));
 
 const port = process.env.PORT || 4000;
 const embedWidth = 100;
-const embedHeight = 150;
-const itemHeightFactor = 50;
+const embedHeight = 75;
+const itemHeightFactor = 25;
 
 let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
     '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
