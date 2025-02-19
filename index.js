@@ -7,9 +7,6 @@ const app = express();
 app.use(cors({ credentials: true, origin: true }));
 
 const port = process.env.PORT || 4000;
-const embedWidth = 100;
-const embedHeight = 75;
-const itemHeightFactor = 25;
 
 let templates = ['<a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a>',
     '<div style="display: flex;"><a target="_top" href="HOST/URL"><img src="FLAG" class="image" alt="ALT"></a><a class="expanded" target="_top" href="HOST/URL">NAME</a></div>',
@@ -24,7 +21,6 @@ app.get('/translations', async (req, res) => {
 
     const url = req.query.url ?? '';
     const branch = req.query.branch ?? '';
-    const color = req.query.color ?? '';
     const siteid = req.query.siteid ?? 'backrooms-wiki';
     const theme = req.query.theme ?? '';
     let result = '';
@@ -52,7 +48,7 @@ app.get('/translations', async (req, res) => {
         }
     }
 
-    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("COLOR", /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color) ? color : "000").replaceAll("WIDTH", embedWidth).replaceAll("HEIGHT", count > 3 ? embedHeight : count * itemHeightFactor).replaceAll("SITEID", siteid).replaceAll("THEME", theme));
+    res.send(htmlCode.replaceAll("THING GOES HERE", result).replaceAll("THEME", theme).replaceAll("SITEID", siteid).replaceAll("THEME", theme));
 });
 app.listen(port, () => console.log(`Service Started at link: http://localhost:${port}`));
 
