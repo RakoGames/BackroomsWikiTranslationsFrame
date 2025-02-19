@@ -14,11 +14,10 @@
     <style>
         body {
             margin: 0;
-            overflow: scroll;
         }
         .flags {
             width: WIDTHpx;
-            height: HEIGHTpx;
+            height: fit-content;
             border: 3px blue;
             display: -webkit-box;
             display: -webkit-flex;
@@ -74,6 +73,7 @@
           }
           var resizer = document.createElement("iframe");
           resizer.style.display = "none";
+          resizer.tag = "resizer";
           container.appendChild(resizer);
 
           // Trim leading slashes from frame ID
@@ -130,6 +130,8 @@
             var frameId = location.href.replace(/^.*\//, "/");
             var resized = createResizeIframe(site, frameId);
             resized();
+
+          document.getElementById('iframe1').contentWindow.location.reload();
         }
     </script>
 </body>
