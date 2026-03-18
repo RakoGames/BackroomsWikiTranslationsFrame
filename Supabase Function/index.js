@@ -48,16 +48,9 @@ Deno.serve(async (req) => {
 
         // Check if the page exists in the branch
         if(await CheckSite(branches[lang].host, url, branches[lang].title)) {
-            // Append the branch object to the matches object
-            matches[lang] = branches[lang];
-        };
-    }
-
-    // Generate the resulting page
-    for (const lang in matches) {
-        if (matches[lang]) {
+            // Generate the resulting page
             result += template.replaceAll("HOST", branches[lang].host).replaceAll("URL", url).replaceAll("FLAG", branches[lang].flag).replaceAll("ALT", branches[lang].alt).replaceAll("NAME", branches[lang].name[1]);
-        }
+        };
     }
     
     let page = htmlCode["htmlCode"].replaceAll("THING GOES HERE", result).replaceAll("THEME", theme).replaceAll("SITEID", siteid);
